@@ -1,6 +1,8 @@
-package com.badyaxa.kraina;
+package com.badyaxa.kraina.controller;
 
+import com.badyaxa.kraina.service.KrainaService;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -11,16 +13,19 @@ import static com.badyaxa.kraina.KrainaApplication.VERSION_OF_THIS_APP;
 @RestController
 public class HomePageController {
 
+    @Autowired
+    private KrainaService krainaService;
+
     @GetMapping
     public String home() {
 
         log.info("-------------HomePageController.home()>>>");
 
-        return "file link is  " + "fieldtUrl" + "" +
+        return "file link is  " + krainaService.getFieldLast() + "" +
                 "<br>" +
                 "Local Time Is  <b>" + LocalTime.now() + "</b>" +
                 "<br>" +
-                "lastModified  - <b>" + "lastString" + "</b>" +
+                "lastModified  - <b>" + krainaService.getFieldLast() + "</b>" +
                 "<br>" +
                 "<h4>VERSION " + VERSION_OF_THIS_APP + "</h4>" +
                 "<br>" +
