@@ -1,7 +1,6 @@
 package com.badyaxa.kraina.init;
 
 import com.badyaxa.kraina.entity.Kraina;
-import com.badyaxa.kraina.repository.KrainaRepository;
 import com.badyaxa.kraina.service.KrainaService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,7 +18,7 @@ public class DataInit implements ApplicationRunner {
     @Override
     public void run(ApplicationArguments args) throws Exception {
        final Kraina kraina = new Kraina("https://gazeta.ua/static/pdf/journal.pdf");
-        krainaService.create(kraina);
-        log.info("--------------DataInit.run()--------------" + "saved");
+        final Kraina saved = krainaService.create(kraina);
+        log.info("--------------DataInit.run()--------------" + saved);
     }
 }

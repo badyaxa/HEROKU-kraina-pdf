@@ -4,6 +4,7 @@ import com.badyaxa.kraina.entity.Kraina;
 import com.badyaxa.kraina.repository.KrainaRepository;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
@@ -13,6 +14,7 @@ import java.util.Optional;
 @AllArgsConstructor
 public class KrainaServiceImpl implements KrainaService {
 
+    @Autowired
     private KrainaRepository krainaRepository;
 
     @Override
@@ -24,7 +26,7 @@ public class KrainaServiceImpl implements KrainaService {
     public Long getFieldLast() {
         log.info("------------------GazetaServiceImpl.getFieldLast()");
         final Long last = krainaRepository.findById(1L).get().getLast();
-        System.out.println("-------------GazetaServiceImpl.getFieldLast() ---   last = " + last);
+        log.info("-------------GazetaServiceImpl.getFieldLast() ---   last = " + last);
         if (last == null) {
             return -1L;
         }
@@ -37,13 +39,14 @@ public class KrainaServiceImpl implements KrainaService {
         final Kraina gazeta = gazetaOptional.get();
         gazeta.setLast(last);
         System.out.println("updateFieldLast()");
-        /*final Gazeta save = */krainaRepository.save(gazeta);
+        /*final Gazeta save = */
+        krainaRepository.save(gazeta);
 //        log.info("-------------GazetaServiceImpl.updateFieldLast() " + save.getLast());
     }
 
     @Override
     public String getFieldtUrl() {
-//        log.info("------------------GazetaServiceImpl.getFieldUrl");
+        log.info("------------------GazetaServiceImpl.getFieldUrl");
         final String url = krainaRepository.findById(1L).get().getUrl();
         if (url == null) {
             return "";
@@ -52,7 +55,7 @@ public class KrainaServiceImpl implements KrainaService {
     }
 
     @Override
-    public void create(Kraina kraina){
-        krainaRepository.save(kraina);
+    public Kraina create(Kraina kraina) {
+        return krainaRepository.save(kraina);
     }
 }

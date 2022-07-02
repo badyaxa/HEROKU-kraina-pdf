@@ -20,12 +20,15 @@ public class HomePageController {
     public String home() {
 
         log.info("-------------HomePageController.home()>>>");
+        final Long lastModified = krainaService.getFieldLast();
+        final String lastModifiedLocalDateTime = Instant.ofEpochMilli(lastModified)
+                .atZone(ZoneId.of("UTC+3")).toLocalDateTime().toString();
 
-        return "file link is  " + krainaService.getFieldLast() + "" +
+        return "file link is  " + krainaService.getFieldtUrl() + "" +
                 "<br>" +
-                "Local Time Is  <b>" + LocalTime.now() + "</b>" +
+                "Local Time Is  <b>" + LocalTime.now(ZoneId.of("UTC+3")) + "(UTC+3)</b>" +
                 "<br>" +
-                "lastModified  - <b>" + krainaService.getFieldLast() + "</b>" +
+                "lastModified  = <b>" + lastModifiedLocalDateTime + "</b>" +
                 "<br>" +
                 "<h4>VERSION " + VERSION_OF_THIS_APP + "</h4>" +
                 "<br>" +

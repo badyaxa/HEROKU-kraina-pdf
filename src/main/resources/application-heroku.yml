@@ -7,3 +7,8 @@ spring:
   jpa:
     spring.jpa.database-platform: org.hibernate.dialect.PostgreSQLDialect
     hibernate.ddl-auto: update
+
+scheduler:
+  fixed:
+    delay:
+      milis: 3600_000
