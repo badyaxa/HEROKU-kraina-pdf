@@ -1,9 +1,9 @@
 package com.badyaxa.kraina.entity;
 
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NonNull;
-import lombok.RequiredArgsConstructor;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
@@ -11,7 +11,7 @@ import java.io.Serializable;
 
 @Entity
 @Data
-@RequiredArgsConstructor
+@AllArgsConstructor
 public class Kraina implements Serializable {
 
     @Id
