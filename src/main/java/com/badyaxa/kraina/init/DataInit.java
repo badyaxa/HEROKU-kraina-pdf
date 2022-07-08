@@ -19,6 +19,6 @@ public class DataInit implements ApplicationRunner {
     public void run(ApplicationArguments args) throws Exception {
         final Kraina kraina = new Kraina(1L, "https://gazeta.ua/static/pdf/journal.pdf", -1L);
         final Kraina saved = krainaService.create(kraina);
-        log.info("--------------DataInit.run()--------------" + saved);
+        log.info("---DataInit.run()>>>" + saved);
     }
 }

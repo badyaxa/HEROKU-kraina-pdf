@@ -13,7 +13,7 @@ import java.util.Map;
 @SpringBootApplication
 public class KrainaApplication {
 
-    public static final String VERSION_OF_THIS_APP = "0.4";
+    public static final String VERSION_OF_THIS_APP = "0.5";
 
     public static void main(String[] args) {
         SpringApplication.run(KrainaApplication.class, args);

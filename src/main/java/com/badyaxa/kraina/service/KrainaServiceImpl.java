@@ -24,9 +24,8 @@ public class KrainaServiceImpl implements KrainaService {
 
     @Override
     public Long getFieldLast() {
-        log.info("------------------GazetaServiceImpl.getFieldLast()");
         final Long last = krainaRepository.findById(1L).get().getLast();
-        log.info("-------------GazetaServiceImpl.getFieldLast() ---   last = " + last);
+        log.info("---KrainaService.getLast(fromDatabase)>>>last = " + last);
         if (last == null) {
             return -1L;
         }
@@ -38,16 +37,14 @@ public class KrainaServiceImpl implements KrainaService {
         final Optional<Kraina> gazetaOptional = krainaRepository.findById(1L);
         final Kraina gazeta = gazetaOptional.get();
         gazeta.setLast(last);
-        System.out.println("updateFieldLast()");
-        /*final Gazeta save = */
         krainaRepository.save(gazeta);
-//        log.info("-------------GazetaServiceImpl.updateFieldLast() " + save.getLast());
+        log.info("---KrainaService.updateLast(inDatabase)>>>last = " + last);
     }
 
     @Override
     public String getFieldtUrl() {
-        log.info("------------------GazetaServiceImpl.getFieldUrl");
         final String url = krainaRepository.findById(1L).get().getUrl();
+        log.info("---KrainaService.getdUrl(fromDatabase)>>>url = " + url);
         if (url == null) {
             return "";
         }
@@ -56,6 +53,7 @@ public class KrainaServiceImpl implements KrainaService {
 
     @Override
     public Kraina create(Kraina kraina) {
+        log.info("---KrainaService.create()>>>kraina = " + kraina);
         return krainaRepository.save(kraina);
     }
 }

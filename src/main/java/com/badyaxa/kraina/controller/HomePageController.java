@@ -6,7 +6,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.time.*;
+import java.time.Instant;
+import java.time.LocalTime;
+import java.time.ZoneId;
+
 import static com.badyaxa.kraina.KrainaApplication.VERSION_OF_THIS_APP;
 
 @Slf4j
@@ -19,7 +22,7 @@ public class HomePageController {
     @GetMapping
     public String home() {
 
-        log.info("-------------HomePageController.home()>>>");
+        log.info("---HomePageController.home()>>>");
         final Long lastModified = krainaService.getFieldLast();
         final String lastModifiedLocalDateTime = Instant.ofEpochMilli(lastModified)
                 .atZone(ZoneId.of("UTC+3")).toLocalDateTime().toString();

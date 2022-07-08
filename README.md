@@ -22,3 +22,14 @@ environment variable
 I remove the internal insomnia scheduler
 and set up the service 'http://kaffeine.herokuapp.com/'
 now my app sleep 6 hour from 22.00 (GMT+3)
+
+# add heroku env. variable
+title
+TELEGRAM_BOT_URL
+
+value
+https://api.telegram.org/botTOKEN/sendMessage?chat_id=CHAT_ID&text=
+
+insert yours:
+- botTOKEN 
+- CHAT_ID
