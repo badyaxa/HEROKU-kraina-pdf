@@ -14,13 +14,10 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.sql.Time;
 import java.time.Instant;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.Arrays;
-
-import static java.util.concurrent.TimeUnit.SECONDS;
 
 @Slf4j
 @Component
