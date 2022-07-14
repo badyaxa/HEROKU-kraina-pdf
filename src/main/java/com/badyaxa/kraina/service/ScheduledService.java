@@ -36,11 +36,6 @@ public class ScheduledService {
         log.info("---ScheduledService.begin>>>");
         HttpHeaders httpHeaders = new HttpHeaders();
 
-        // Force the request expires
-//        httpHeaders.setExpires(0);
-        // Cache-Control: private, no-store, max-age=0
-//        httpHeaders.setCacheControl("private, no-store, max-age=0");
-
         httpHeaders.add("user-agent", "PostmanRuntime/7.29.0");
         httpHeaders.setAccept(Arrays.asList(MediaType.APPLICATION_PDF, MediaType.APPLICATION_OCTET_STREAM));
 
@@ -53,10 +48,6 @@ public class ScheduledService {
 
         ResponseEntity<byte[]> responseEntity =
                 restTemplate.exchange(fieldUrl, HttpMethod.GET, httpEntity, byte[].class);
-
-//        responseEntity.getHeaders().setExpires(0);
-//        responseEntity.getHeaders().setCacheControl(CacheControl.maxAge(5, SECONDS));
-        log.info("---" + responseEntity.getHeaders().getCacheControl());
 
         final long lastModified = responseEntity.getHeaders().getLastModified();
         LocalDate date = Instant.ofEpochMilli(lastModified)
