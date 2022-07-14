@@ -32,6 +32,12 @@ public class ScheduledService {
 
         log.info("---ScheduledService.begin>>>");
         HttpHeaders httpHeaders = new HttpHeaders();
+
+        // Force the request expires
+        httpHeaders.setExpires(0);
+        // Cache-Control: private, no-store, max-age=0
+        httpHeaders.setCacheControl("private, no-store, max-age=0");
+
         httpHeaders.add("user-agent", "PostmanRuntime/7.29.0");
         httpHeaders.setAccept(Arrays.asList(MediaType.APPLICATION_PDF, MediaType.APPLICATION_OCTET_STREAM));
 
