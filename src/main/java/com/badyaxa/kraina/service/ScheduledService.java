@@ -14,10 +14,13 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.sql.Time;
 import java.time.Instant;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.Arrays;
+
+import static java.util.concurrent.TimeUnit.SECONDS;
 
 @Slf4j
 @Component
@@ -50,6 +53,9 @@ public class ScheduledService {
 
         ResponseEntity<byte[]> responseEntity =
                 restTemplate.exchange(fieldUrl, HttpMethod.GET, httpEntity, byte[].class);
+
+//        responseEntity.getHeaders().setExpires(0);
+        responseEntity.getHeaders().setCacheControl(CacheControl.maxAge(5, SECONDS));
 
         final long lastModified = responseEntity.getHeaders().getLastModified();
         LocalDate date = Instant.ofEpochMilli(lastModified)
