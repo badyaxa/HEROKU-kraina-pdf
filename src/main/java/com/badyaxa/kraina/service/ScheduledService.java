@@ -46,23 +46,23 @@ public class ScheduledService {
         ResponseEntity<byte[]> responseEntity =
                 restTemplate.exchange(fieldUrl, HttpMethod.GET, httpEntity, byte[].class);
 
-        final long lastModified = responseEntity.getHeaders().getLastModified();
+        long lastModified = responseEntity.getHeaders().getLastModified();
         LocalDate date = Instant.ofEpochMilli(lastModified)
                 .atZone(ZoneId.of("UTC+3"))
                 .toLocalDate();
 
-        final String localDateTimeUtc3 = Instant.ofEpochMilli(lastModified)
+        String localDateTimeUtc3 = Instant.ofEpochMilli(lastModified)
                 .atZone(ZoneId.of("UTC+3"))
                 .toLocalDateTime().toString();
         log.info("---ScheduledService.lastModified.FromSite = " + localDateTimeUtc3);
 
-        final long fieldLast = krainaService.getFieldLast();
-        final String fieldLastUtc3 = Instant.ofEpochMilli(lastModified)
+        long fieldLast = krainaService.getFieldLast();
+        String fieldLastUtc3 = Instant.ofEpochMilli(lastModified)
                 .atZone(ZoneId.of("UTC+3"))
                 .toLocalDateTime().toString();
         log.info("---ScheduledService.lastModified.FromDatabase = " + fieldLastUtc3);
 
-        if (lastModified != fieldLast) {
+        if (lastModified > fieldLast) {
 
             log.info("---ScheduledService.if()>>>New file on server found");
 
